@@ -1,0 +1,95 @@
+a:link {
+    color: #c6c6ec;
+}
+
+a:visited {
+    color: #d9d9df;
+}
+
+a:hover {
+    color: #d1d1ff;
+}
+
+body {
+    text-align: center;
+    color: #ddd;
+    background: #000;
+    font-size: 150%;
+    margin: auto;
+}
+
+button, input {
+    font-size: 100%;
+    margin: 5px;
+}
+
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.togls {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.oths {
+    border: solid 1px;
+    padding: 12px;
+}
+
+.texts li {
+    margin: 0.5em 0;
+}
+
+.centered {
+    display: inline-block;
+    background: #000;
+}
+
+.head {
+    margin: 0;
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+.foot {
+    margin: 0;
+    padding-bottom: 0.5em;
+    text-align: center;
+}
+
+.ttl {
+    margin: 1.5em 0 0 0;
+    font-weight: bold;
+}
+
+.texts {
+    max-width: 38em;
+    min-width: 15em;
+    line-height: 150%;
+    text-align: left;
+    text-indent: 0;
+    padding: 0 0.5em;
+}
+
+.small {
+    font-size: 90%;
+    text-indent: 2em;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
