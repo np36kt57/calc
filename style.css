@@ -18,9 +18,26 @@ body {
     margin: auto;
 }
 
-button, input {
+button,
+input {
     font-size: 100%;
     margin: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.t_head {
+    background: #333;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
 }
 
 ul {
