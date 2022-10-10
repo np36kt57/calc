@@ -34,7 +34,7 @@ function calc() {
         return a + b;
     }, 0);
     var begin_at;
-    var results = { 'issue': [], 'check': [], 'begin': [], 'direction': [] }
+    var results = { 'issue': [], 'check': [], 'begin': [], 'direction': [] };
     nums.forEach(function(num, i) {
         console.log("uncorrected: ", num / sum * 10);
         // 1: The first issue starts at the middle, moving forward.
@@ -60,13 +60,15 @@ function calc() {
     }, 0);
     if (diff !== 0) {
         console.log("Correction: ", diff);
-        results.check = results.check.map(function(num) {
+        results.check = results.check.map(function(num, i) {
             if (diff < 0) {
                 num = num - 1;
                 diff++;
             } else if (diff > 0) {
-                num = num + 1;
-                diff--;
+                if (!(i === 0 && num === 1)) {
+                    num = num + 1;
+                    diff--;
+                }
             }
             return num;
         });
