@@ -62,7 +62,7 @@ function calc() {
         console.log("Correction: ", diff);
         results.check = results.check.map(function(num, i) {
             if (diff < 0) {
-                if (!(i === 0 && num === 1)) {
+                if (!(i === 2 && num === 1)) {
                     num = num - 1;
                     diff++;
                 }
