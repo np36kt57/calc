@@ -62,13 +62,13 @@ function calc() {
         console.log("Correction: ", diff);
         results.check = results.check.map(function(num, i) {
             if (diff < 0) {
-                num = num - 1;
-                diff++;
-            } else if (diff > 0) {
                 if (!(i === 0 && num === 1)) {
-                    num = num + 1;
-                    diff--;
+                    num = num - 1;
+                    diff++;
                 }
+            } else if (diff > 0) {
+                num = num + 1;
+                diff--;
             }
             return num;
         });
