@@ -33,63 +33,54 @@ function calc() {
     var sum = nums.reduce(function(a, b) {
         return a + b;
     }, 0);
-    var begin_at;
-    var results = { 'issue': [], 'check': [], 'begin': [], 'direction': [] };
+    var collection = [];
     nums.forEach(function(num, i) {
-        console.log("uncorrected: ", num / sum * 10);
-        // 1: The first issue starts at the middle, moving forward.
-        // 2: The second issue starts at the middle, moving backward.
-        // 3: The third issue starts at the beginning, moving forward.
-        // 4: The fourth issue starts at the end, moving backwards.
-        if (i % 4 === 0) {
-            begin_at = 'middle: #' + Math.ceil(num / 2);
-        } else if (i % 4 === 1) {
-            begin_at = 'middle: #' + Math.floor(num / 2);
-        } else if (i % 4 === 2) {
-            begin_at = 'beginning (#1)';
-        } else {
-            begin_at = 'very end (#' + num + ')';
+        for (let index = 0; index < num; index++) {
+            collection.push(["no. " + (i + 1), '#' + (index + 1)])
         }
-        results.issue.push("no. " + (i + 1));
-        results.check.push(Math.round(num / sum * 10));
-        results.direction.push(i % 2 === 0 ? 'forward' : 'backward');
-        results.begin.push(begin_at);
     });
-    var diff = 10 - results.check.reduce(function(a, b) {
-        return a + b;
-    }, 0);
-    if (diff !== 0) {
-        console.log("Correction: ", diff);
-        results.check = results.check.map(function(num, i) {
-            if (diff < 0) {
-                if (!(i === 2 && num === 1)) {
-                    num = num - 1;
-                    diff++;
-                }
-            } else if (diff > 0) {
-                num = num + 1;
-                diff--;
-            }
-            return num;
-        });
+    collection = get_random10(collection);
+    var collect_dict = {};
+    collection.forEach(elem => {
+        collect_dict[elem[0]] = collect_dict[elem[0]] ? collect_dict[elem[0]] : [];
+        collect_dict[elem[0]].push(elem[1])
+    });
+    var results = { 'issue': [], 'check': [] };
+    console.log(Object.keys(collect_dict).sort(numsort));
+    for (var key of Object.keys(collect_dict).sort(numsort)) {
+        results.issue.push(key);
+        results.check.push(collect_dict[key].sort(numsort).join('; '));
     }
-    diff = 10 - results.check.reduce(function(a, b) {
-        return a + b;
-    }, 0);
     var text = ("(Numbers given: <i>" + nums.join(', ') +
         "</i>)<br/> <span id='table' style='color:lightgreen;font-size:120%;line-height:200%'>The distribution of the ten results: <b></span>");
     console.log(results);
-    if (diff !== 0) {
-        feed.innerHTML = "Something went wrong in the script... Contact me please.";
-    } else {
-        feed.innerHTML = text;
-        results.issue.unshift('Issue number');
-        results.check.unshift('Amount to check');
-        results.begin.unshift('Begin at');
-        results.direction.unshift('Direction');
-        createTable(results);
-    }
+    feed.innerHTML = text;
+    results.issue.unshift('Issue number');
+    results.check.unshift('Checks');
+    createTable(results);
 }
+
+
+function numsort(a, b) {
+    return a.localeCompare(b, undefined, { numeric: true });
+}
+
+function get_random10(arr) {
+    var array = JSON.parse(JSON.stringify(arr));
+    var newarr = [];
+    var currentIndex = array.length,
+        temporaryValue,
+        randomIndex;
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        newarr[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return newarr.slice(0, 10);
+};
 
 function remov() {
     input.value = '';
