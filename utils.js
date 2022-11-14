@@ -79,7 +79,7 @@ function get_random10(arr) {
         newarr[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-    return newarr.slice(0, 10);
+    return newarr.slice(0, 9);
 };
 
 function remov() {
