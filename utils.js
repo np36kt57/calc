@@ -52,7 +52,7 @@ function calc() {
         results.check.push(collect_dict[key].sort(numsort).join('; '));
     }
     var text = ("(Numbers given: <i>" + nums.join(', ') +
-        "</i>)<br/> <span id='table' style='color:lightgreen;font-size:120%;line-height:200%'>The distribution of the ten results: <b></span>");
+        "</i>)<br/> <span id='table' style='color:lightgreen;font-size:120%;line-height:200%'>The distribution of the nine results: <b></span>");
     console.log(results);
     feed.innerHTML = text;
     results.issue.unshift('Issue number');
